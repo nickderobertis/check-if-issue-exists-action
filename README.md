@@ -1,1 +1,72 @@
-check-if-issue-exists-action
+# Check if Issue Exists Action
+
+This Github action queries for an issue in a Github repository, 
+exposing an output for whether an issue matching that query exists.
+
+## Inputs
+
+### Required Inputs
+
+#### `repo`
+
+Which repo to check issues in. Must include the owner of the repo, e.g. `whoopnip/check-if-issue-exists-action`
+
+#### `token`
+
+Github token
+
+### Query Inputs
+
+All query inputs are optional, but at least one query input must be passed. If
+multiple query inputs are passed, the issue must match all of them.
+
+#### `title`
+
+Check for issues matching this title exactly.
+
+#### `labels`
+
+Check for issues matching these labels. Can pass a comma-separated list of labels or a single label.
+
+## Outputs
+
+### `exists`
+
+Set to `true` if the queried issue exists and `false` otherwise. 
+
+## Example usage
+
+```yaml
+uses: whoopnip/check-if-issue-exists-action@master
+id: check_if_issue_exists
+with:
+  repo: myuser/my-target-repo
+  token: ${{ secrets.GITHUB_TOKEN }}
+  title: Add some stuff
+  labels: good first issue, enhancement
+  
+```
+
+This is useful in a workflow that creates an issue, to not create that issue if 
+it already exists. For example:
+
+```yaml
+steps:
+  - uses: whoopnip/check-if-issue-exists-action@master
+    name: Check if Issue Exists
+    id: check_if_issue_exists
+    with:
+      repo: myuser/my-target-repo
+      token: ${{ secrets.GITHUB_TOKEN }}
+      title: Add some stuff
+      labels: good first issue, enhancement
+  - name: Create Issue
+    if: steps.check_if_issue_exists.outputs.exists == 'false'
+    uses: JasonEtco/create-an-issue@master
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+```
+
+## Author
+
+By Nick DeRobertis, licensed MIT.

@@ -1,0 +1,22 @@
+name: 'Check if Issue Exists'
+description: 'Queries for an issue in a Github repository, exposing an output for whether an issue matching that query exists'
+inputs:
+  repo:
+    description: 'Which repo to check issues in. Must include the owner of the repo, e.g. whoopnip/check-if-issue-exists-action'
+    required: true
+  token:
+    description: 'Github token'
+    required: true
+  title:
+    description: 'Check for issues matching this title exactly'
+    required: false
+  labels:
+    description: 'Check for issues matching these labels. Can pass a comma-separated list of labels or a single label.'
+    required: false
+
+outputs:
+  exists:
+    description: 'Whether the queried issue exists in the passed repo'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
