@@ -2,7 +2,7 @@
 
 cd /
 
-exists=$(python check_issue.py)
+exists=$(pipenv run python check_issue.py)
 
 if [ $? -ne 0 ]; then
     echo "Error checking if issue exists" >&2;
