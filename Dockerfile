@@ -1,6 +1,8 @@
 # Container image that runs your code
 FROM python:3.7-slim
 
+ENV PIPENV_VENV_IN_PROJECT=true
+
 WORKDIR /
 
 RUN pip install pipenv
