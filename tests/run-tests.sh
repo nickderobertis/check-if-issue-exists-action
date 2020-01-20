@@ -1,7 +1,9 @@
 #!/bin/bash
 # NOTE: Run from main project directory
 
-source env.sh
+if [ -f env.sh ]; then
+  source env.sh
+fi;
 
 # Build image if necessary
 ./build.sh

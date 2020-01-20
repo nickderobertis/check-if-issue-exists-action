@@ -1,0 +1,22 @@
+name: Run Tests
+on:
+  push: {}
+  pull_request:
+    types: [closed]
+
+jobs:
+  test:
+
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 1
+      matrix:
+        python-version: [3.7]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run Tests
+        run: |
+          bash tests/run-tests.sh
+        env:
+          INPUT_TOKEN: ${{ secrets.gh_token }}

@@ -67,6 +67,31 @@ steps:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
 
+## Development Guide
+
+### Build Image
+
+Use the script `build.sh` to build the image.
+
+### Run Tests
+
+Tests are run on the CI when code is pushed. But they can also be run locally. 
+Before doing that, the environment must be set up.
+
+#### Set up Environment for Tests
+
+Copy `env.template.sh` to `env.sh` and add your Github token.
+
+#### Run Tests
+
+Run `./tests/run-tests.sh` from the main project directory. You should see the 
+build of the image and then:
+
+```
+Test to return true passed.
+Test to return false passed.
+```
+
 ## Author
 
 By Nick DeRobertis, licensed MIT.
