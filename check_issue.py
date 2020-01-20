@@ -54,8 +54,10 @@ class RepoLookupParams:
         issues = get_issues_for_repo(repo_path, gh_obj)
         for issue in issues:
             if self.matches_issue(issue):
+                print(f'Found issue matching query parameters: {issue}')
                 return True
 
+        print('Did not find issues matching query parameters.')
         return False
 
 
@@ -84,14 +86,23 @@ def get_gh_obj() -> Github:
     return Github(gh_token)
 
 
+def set_output(variable: str, value: str) -> None:
+    print(f'::set-output name={variable}::{value}')
+
+
+def set_exists_output(value: str) -> None:
+    set_output('exists', value)
+
+
 def main():
     repo_path = get_repo_from_env()
     gh_obj = get_gh_obj()
     params = RepoLookupParams.from_env()
+    print(f'Searching issues with query parameters: {params}')
     if params.matches_issue_in_repo(repo_path, gh_obj):
-        print('true')
+        set_exists_output('true')
     else:
-        print('false')
+        set_exists_output('false')
 
 
 if __name__ == '__main__':
