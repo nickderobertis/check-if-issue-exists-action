@@ -71,7 +71,7 @@ def get_repo_from_env() -> str:
     if repo_path is None:
         raise ValueError(
             'Must provide repo. Specify it in with workflow as with: repo, '
-            'e.g. with: repo: whoopnip/check-if-issue-exists-action'
+            'e.g. with: repo: nickderobertis/check-if-issue-exists-action'
         )
     return repo_path
 

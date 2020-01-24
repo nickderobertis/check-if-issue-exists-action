@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export INPUT_REPO=whoopnip/pypi-sphinx-quickstart
+export INPUT_REPO=nickderobertis/pypi-sphinx-quickstart
 export INPUT_LABELS=wontfix
 export INPUT_TITLE="An example issue raised by todo-actions"
 

@@ -2,7 +2,7 @@ name: 'Check if Issue Exists'
 description: 'Queries for an issue in a Github repository, exposing an output for whether an issue matching that query exists'
 inputs:
   repo:
-    description: 'Which repo to check issues in. Must include the owner of the repo, e.g. whoopnip/check-if-issue-exists-action'
+    description: 'Which repo to check issues in. Must include the owner of the repo, e.g. nickderobertis/check-if-issue-exists-action'
     required: true
   token:
     description: 'Github token'
