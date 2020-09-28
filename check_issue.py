@@ -63,7 +63,7 @@ class RepoLookupParams:
 
 def get_issues_for_repo(repo_path: str, gh_obj: Github) -> PaginatedList:
     repo = gh_obj.get_repo(repo_path)
-    return repo.get_issues()
+    return repo.get_issues(state='all')
 
 
 def get_repo_from_env() -> str:
